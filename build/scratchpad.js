@@ -7,13 +7,16 @@ var habitTracker = new Vue({
     message: 'Hello Vue!'
   },
   methods: {
-    generateDateRange: function generateDateRange() {
-      // Returns array of 7 moment objects
-      return new Array(7).fill(1).map(function (el, index) {
-        return moment().subtract(7 - (index + 1), 'd') // Calcultes today minus place in array i.e arr[1] = today - 5 days
-        .startOf('date'); // Sets Date and time to midnight and 0s
+    generateDateRange: function generateDateRange(startingDate) {
+      // check if arg undefedined and sets default date of today(-6 days)
+      startingDate = startingDate || moment().startOf('date').subtract(6, 'd');
+
+      // Returns array of 7 moment objects increase days by 1
+      return new Array(7).fill(1).map(function (c, i) {
+        return moment(startingDate).add(i, 'd').startOf('date');
       });
     }
+
   }
 });
 
@@ -61,6 +64,10 @@ describe('Habit Tracker', function () {
     describe('args', function () {
       it('should accept a moment() as an argument', function () {
         expect(habitTracker.generateDateRange(moment())).not.toBe(undefined);
+      });
+      it('should set the moment to the first item of the array', function () {
+        gdr = habitTracker.generateDateRange(moment());
+        expect(gdr[0].format()).toBe(moment().startOf('date').format());
       });
     });
   });
