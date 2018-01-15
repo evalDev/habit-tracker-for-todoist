@@ -5,7 +5,14 @@ var habitTracker = new Vue({
     message: 'Hello Vue!'
   },
   methods: {
-    generateDateRange: () => new Array(7).fill(moment())
+    generateDateRange: () => {
+      // Returns array of 7 moment objects
+      return new Array(7).fill(1).map((el, index) => {
+        return moment()
+          .subtract(7 - (index + 1), 'd') // Calcultes today minus place in array i.e arr[1] = today - 5 days
+          .startOf('date') // Sets Date and time to midnight and 0s
+      })
+    }
   }
 })
 
@@ -32,6 +39,11 @@ describe('Habit Tracker', () => {
     it('should have today\'s date as the last item in the array', () => {
       const lastDate = gdr.slice(-1)[0]
       expect(lastDate.startOf('date').format()).toBe(moment().startOf('date').format())
+    })
+    it('should have a that is 6 days prior to today as the first item in the array', () => {
+      const firstDate = gdr.slice(0)[0]
+      const sixDaysPriortoToday = moment().subtract(6, 'days').startOf('date').format()
+      expect(firstDate.format()).toBe(sixDaysPriortoToday)
     })
   })
 })
