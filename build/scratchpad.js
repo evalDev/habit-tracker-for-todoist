@@ -35,10 +35,9 @@ describe('Habit Tracker', function () {
         return date._isAMomentObject;
       })).toBe(true);
     });
-    xit('generates the last date in array as today\'s date', function () {
-      var today = moment().format('YYYY-MM-DD');
-      var todayWithoutTime = moment();
-      expect(gdr.slice(-1)[0]).toBe();
+    it('should have today\'s date as the last item in the array', function () {
+      var lastDate = gdr.slice(-1)[0];
+      expect(lastDate.startOf('date').format()).toBe(moment().startOf('date').format());
     });
   });
 });

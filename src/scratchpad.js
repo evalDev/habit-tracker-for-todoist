@@ -29,10 +29,9 @@ describe('Habit Tracker', () => {
     it('should return an array of moment(date) objects', () => {
       expect(gdr.every(date => date._isAMomentObject)).toBe(true)
     })
-    xit('generates the last date in array as today\'s date', () => {
-      const today = moment().format('YYYY-MM-DD')
-      const todayWithoutTime = moment()
-      expect(gdr.slice(-1)[0]).toBe()
+    it('should have today\'s date as the last item in the array', () => {
+      const lastDate = gdr.slice(-1)[0]
+      expect(lastDate.startOf('date').format()).toBe(moment().startOf('date').format())
     })
   })
 })
