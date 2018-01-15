@@ -5,7 +5,7 @@ var habitTracker = new Vue({
     message: 'Hello Vue!'
   },
   methods: {
-    generateDateRange: () => []
+    generateDateRange: () => new Array(7)
   }
 })
 
@@ -15,6 +15,9 @@ describe('Habit Tracker', () => {
   describe('generateDateRange', () => {
     it('generates an array', () => {
       expect(Array.isArray(habitTracker.generateDateRange())).toBe(true)
+    })
+    it('generates an array with 7 items', () => {
+      expect(habitTracker.generateDateRange().length).toBe(7)
     })
   })
 })

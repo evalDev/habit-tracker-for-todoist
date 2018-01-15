@@ -8,7 +8,7 @@ var habitTracker = new Vue({
   },
   methods: {
     generateDateRange: function generateDateRange() {
-      return [];
+      return new Array(7);
     }
   }
 });
@@ -19,6 +19,9 @@ describe('Habit Tracker', function () {
   describe('generateDateRange', function () {
     it('generates an array', function () {
       expect(Array.isArray(habitTracker.generateDateRange())).toBe(true);
+    });
+    it('generates an array with 7 items', function () {
+      expect(habitTracker.generateDateRange().length).toBe(7);
     });
   });
 });
