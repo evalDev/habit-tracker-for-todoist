@@ -53,5 +53,10 @@ describe('Habit Tracker', () => {
       })
       expect(checkIncrementedOneDay._isAMomentObject).toBe(true)
     })
+    describe('args', () => {
+      it('should accept a moment() as an argument', () => {
+        expect(habitTracker.generateDateRange(moment())).not.toBe(undefined)
+      })
+    })
   })
 })

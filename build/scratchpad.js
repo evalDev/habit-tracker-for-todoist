@@ -58,5 +58,10 @@ describe('Habit Tracker', function () {
       });
       expect(checkIncrementedOneDay._isAMomentObject).toBe(true);
     });
+    describe('args', function () {
+      it('should accept a moment() as an argument', function () {
+        expect(habitTracker.generateDateRange(moment())).not.toBe(undefined);
+      });
+    });
   });
 });
