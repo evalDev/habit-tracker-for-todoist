@@ -48,5 +48,15 @@ describe('Habit Tracker', function () {
       var sixDaysPriortoToday = moment().subtract(6, 'days').startOf('date').format();
       expect(firstDate.format()).toBe(sixDaysPriortoToday);
     });
+    it('should return an array where each item is +1 day', function () {
+      // checks date incremented by one day if false returns 0
+      var checkIncrementedOneDay = gdr.reduce(function (previous, date) {
+        if (previous === 0) {
+          return 0;
+        }
+        return previous.add(1, 'd').format() === date.format() ? date : 0;
+      });
+      expect(checkIncrementedOneDay._isAMomentObject).toBe(true);
+    });
   });
 });
