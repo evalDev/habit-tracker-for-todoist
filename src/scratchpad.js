@@ -5,7 +5,7 @@ var habitTracker = new Vue({
     message: 'Hello Vue!'
   },
   methods: {
-    generateDateRange: () => new Array(7).fill('2018-02-01T00:00:00+00:00')
+    generateDateRange: () => new Array(7).fill(moment())
   }
 })
 
@@ -26,8 +26,13 @@ describe('Habit Tracker', () => {
     it('generates a array that is not empty', () => {
       expect(Object.keys(gdr).length).toBeGreaterThan(0)
     })
-    it('generates an array of \'YYYY-MM-DDTHH:mm:ss+00:00\' dates-times', () => {
-      expect(gdr.every(date => date === String(moment(date).format()))).toBe(true)
+    it('should return an array of moment(date) objects', () => {
+      expect(gdr.every(date => date._isAMomentObject)).toBe(true)
+    })
+    xit('generates the last date in array as today\'s date', () => {
+      const today = moment().format('YYYY-MM-DD')
+      const todayWithoutTime = moment()
+      expect(gdr.slice(-1)[0]).toBe()
     })
   })
 })

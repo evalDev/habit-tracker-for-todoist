@@ -8,7 +8,7 @@ var habitTracker = new Vue({
   },
   methods: {
     generateDateRange: function generateDateRange() {
-      return new Array(7).fill('2018-02-01T00:00:00+00:00');
+      return new Array(7).fill(moment());
     }
   }
 });
@@ -30,10 +30,15 @@ describe('Habit Tracker', function () {
     it('generates a array that is not empty', function () {
       expect(Object.keys(gdr).length).toBeGreaterThan(0);
     });
-    it('generates an array of \'YYYY-MM-DDTHH:mm:ss+00:00\' dates-times', function () {
+    it('should return an array of moment(date) objects', function () {
       expect(gdr.every(function (date) {
-        return date === String(moment(date).format());
+        return date._isAMomentObject;
       })).toBe(true);
+    });
+    xit('generates the last date in array as today\'s date', function () {
+      var today = moment().format('YYYY-MM-DD');
+      var todayWithoutTime = moment();
+      expect(gdr.slice(-1)[0]).toBe();
     });
   });
 });
