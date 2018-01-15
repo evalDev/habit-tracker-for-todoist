@@ -17,11 +17,15 @@ var habitTracker = new Vue({
 
 describe('Habit Tracker', function () {
   describe('generateDateRange', function () {
+    var gdr = void 0;
+    beforeEach(function () {
+      gdr = habitTracker.generateDateRange();
+    });
     it('generates an array', function () {
-      expect(Array.isArray(habitTracker.generateDateRange())).toBe(true);
+      expect(Array.isArray(gdr)).toBe(true);
     });
     it('generates an array with 7 items', function () {
-      expect(habitTracker.generateDateRange().length).toBe(7);
+      expect(gdr.length).toBe(7);
     });
   });
 });

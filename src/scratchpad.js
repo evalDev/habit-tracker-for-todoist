@@ -13,11 +13,15 @@ var habitTracker = new Vue({
 
 describe('Habit Tracker', () => {
   describe('generateDateRange', () => {
+    let gdr
+    beforeEach(() => {
+      gdr = habitTracker.generateDateRange()
+    })
     it('generates an array', () => {
-      expect(Array.isArray(habitTracker.generateDateRange())).toBe(true)
+      expect(Array.isArray(gdr)).toBe(true)
     })
     it('generates an array with 7 items', () => {
-      expect(habitTracker.generateDateRange().length).toBe(7)
+      expect(gdr.length).toBe(7)
     })
   })
 })
