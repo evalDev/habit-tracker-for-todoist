@@ -1,0 +1,12 @@
+include stylesheets.pug
+include scripts
+
+doctype html
+html
+  head
+    each href in ['style.css'].concat(stylesheets)
+      link(rel="stylesheet" type="text/css" href=href)
+  body
+    include ../body.pug
+    each src in scripts.concat(['scratchpad.js'])
+      script(type="text/javascript" src=src)
