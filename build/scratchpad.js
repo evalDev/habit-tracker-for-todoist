@@ -1,5 +1,9 @@
 'use strict';
 
 // Javascript
-
-console.log('JS is Working');
+var habitTracker = new Vue({
+  el: '#habitTracker',
+  data: {
+    message: 'Hello Vue!'
+  }
+});
