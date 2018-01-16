@@ -17,6 +17,9 @@ var habitTracker = new Vue({
     },
     plusOneDay: function () {
       return this.dateRange = this.generateDateRange(this.dateRange[0].add(1, 'd'))
+    },
+    minusOneDay: function () {
+      return this.dateRange = this.generateDateRange(this.dateRange[0].subtract(1, 'd'))
     }
 
   }
@@ -82,6 +85,21 @@ describe('Habit Tracker', () => {
       expect(dateRange[4].format()).toBe('2018-01-06T00:00:00+00:00')
       expect(dateRange[5].format()).toBe('2018-01-07T00:00:00+00:00')
       expect(dateRange[6].format()).toBe('2018-01-08T00:00:00+00:00')
+    })
+  })
+  describe('minusOneDay', () => {
+    it('should advance all of the date in dateRange by one day', () => {
+      const date = moment('2018-01-01', 'YYYY-MM-DD')
+      habitTracker.dateRange = habitTracker.generateDateRange(date)
+      habitTracker.minusOneDay()
+      const dateRange = habitTracker.dateRange
+      expect(dateRange[0].format()).toBe('2017-12-31T00:00:00+00:00')
+      expect(dateRange[1].format()).toBe('2018-01-01T00:00:00+00:00')
+      expect(dateRange[2].format()).toBe('2018-01-02T00:00:00+00:00')
+      expect(dateRange[3].format()).toBe('2018-01-03T00:00:00+00:00')
+      expect(dateRange[4].format()).toBe('2018-01-04T00:00:00+00:00')
+      expect(dateRange[5].format()).toBe('2018-01-05T00:00:00+00:00')
+      expect(dateRange[6].format()).toBe('2018-01-06T00:00:00+00:00')
     })
   })
 })
