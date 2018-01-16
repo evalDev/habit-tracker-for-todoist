@@ -25,6 +25,9 @@ var habitTracker = new Vue({
     },
     plusOneWeek: function plusOneWeek() {
       return this.dateRange = this.generateDateRange(this.dateRange[0].add(7, 'd'));
+    },
+    minusOneWeek: function minusOneWeek() {
+      return this.dateRange = this.generateDateRange(this.dateRange[0].subtract(7, 'd'));
     }
 
   }
@@ -124,6 +127,21 @@ describe('Habit Tracker', function () {
       expect(dateRange[4].format()).toBe('2018-01-12T00:00:00+00:00');
       expect(dateRange[5].format()).toBe('2018-01-13T00:00:00+00:00');
       expect(dateRange[6].format()).toBe('2018-01-14T00:00:00+00:00');
+    });
+  });
+  describe('minusOneWeek', function () {
+    it('should regress all of the date in dateRange by one week', function () {
+      var date = moment('2018-01-01', 'YYYY-MM-DD');
+      habitTracker.dateRange = habitTracker.generateDateRange(date);
+      habitTracker.minusOneWeek();
+      var dateRange = habitTracker.dateRange;
+      expect(dateRange[0].format()).toBe('2017-12-25T00:00:00+00:00');
+      expect(dateRange[1].format()).toBe('2017-12-26T00:00:00+00:00');
+      expect(dateRange[2].format()).toBe('2017-12-27T00:00:00+00:00');
+      expect(dateRange[3].format()).toBe('2017-12-28T00:00:00+00:00');
+      expect(dateRange[4].format()).toBe('2017-12-29T00:00:00+00:00');
+      expect(dateRange[5].format()).toBe('2017-12-30T00:00:00+00:00');
+      expect(dateRange[6].format()).toBe('2017-12-31T00:00:00+00:00');
     });
   });
 });
