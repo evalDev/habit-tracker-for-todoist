@@ -17,17 +17,20 @@ var habitTracker = new Vue({
         return moment(startingDate).add(i, 'd').startOf('date');
       });
     },
+    addXdays: function addXdays(number) {
+      return this.dateRange = this.generateDateRange(this.dateRange[0].add(number, 'd'));
+    },
     plusOneDay: function plusOneDay() {
-      return this.dateRange = this.generateDateRange(this.dateRange[0].add(1, 'd'));
+      return this.addXdays(1);
     },
     minusOneDay: function minusOneDay() {
-      return this.dateRange = this.generateDateRange(this.dateRange[0].subtract(1, 'd'));
+      return this.addXdays(-1);
     },
     plusOneWeek: function plusOneWeek() {
-      return this.dateRange = this.generateDateRange(this.dateRange[0].add(7, 'd'));
+      return this.addXdays(7);
     },
     minusOneWeek: function minusOneWeek() {
-      return this.dateRange = this.generateDateRange(this.dateRange[0].subtract(7, 'd'));
+      return this.addXdays(-7);
     }
 
   }

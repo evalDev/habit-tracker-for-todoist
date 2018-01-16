@@ -15,17 +15,21 @@ var habitTracker = new Vue({
         .map((c, i) => moment(startingDate)
           .add(i, 'd').startOf('date'))
     },
+    addXdays: function (number) {
+      return this.dateRange =
+        this.generateDateRange(this.dateRange[0].add(number, 'd'))
+    },
     plusOneDay: function () {
-      return this.dateRange = this.generateDateRange(this.dateRange[0].add(1, 'd'))
+      return this.addXdays(1)
     },
     minusOneDay: function () {
-      return this.dateRange = this.generateDateRange(this.dateRange[0].subtract(1, 'd'))
+      return this.addXdays(-1)
     },
     plusOneWeek: function () {
-      return this.dateRange = this.generateDateRange(this.dateRange[0].add(7, 'd'))
+      return this.addXdays(7)
     },
     minusOneWeek: function () {
-      return this.dateRange = this.generateDateRange(this.dateRange[0].subtract(7, 'd'))
+      return this.addXdays(-7)
     }
 
   }
