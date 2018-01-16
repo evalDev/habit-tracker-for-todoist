@@ -22,6 +22,9 @@ var habitTracker = new Vue({
     },
     minusOneDay: function minusOneDay() {
       return this.dateRange = this.generateDateRange(this.dateRange[0].subtract(1, 'd'));
+    },
+    plusOneWeek: function plusOneWeek() {
+      return this.dateRange = this.generateDateRange(this.dateRange[0].add(7, 'd'));
     }
 
   }
@@ -94,7 +97,7 @@ describe('Habit Tracker', function () {
     });
   });
   describe('minusOneDay', function () {
-    it('should advance all of the date in dateRange by one day', function () {
+    it('should regress all of the date in dateRange by one day', function () {
       var date = moment('2018-01-01', 'YYYY-MM-DD');
       habitTracker.dateRange = habitTracker.generateDateRange(date);
       habitTracker.minusOneDay();
@@ -106,6 +109,21 @@ describe('Habit Tracker', function () {
       expect(dateRange[4].format()).toBe('2018-01-04T00:00:00+00:00');
       expect(dateRange[5].format()).toBe('2018-01-05T00:00:00+00:00');
       expect(dateRange[6].format()).toBe('2018-01-06T00:00:00+00:00');
+    });
+  });
+  describe('plusOneWeek', function () {
+    it('should advance all of the date in dateRange by one week', function () {
+      var date = moment('2018-01-01', 'YYYY-MM-DD');
+      habitTracker.dateRange = habitTracker.generateDateRange(date);
+      habitTracker.plusOneWeek();
+      var dateRange = habitTracker.dateRange;
+      expect(dateRange[0].format()).toBe('2018-01-08T00:00:00+00:00');
+      expect(dateRange[1].format()).toBe('2018-01-09T00:00:00+00:00');
+      expect(dateRange[2].format()).toBe('2018-01-10T00:00:00+00:00');
+      expect(dateRange[3].format()).toBe('2018-01-11T00:00:00+00:00');
+      expect(dateRange[4].format()).toBe('2018-01-12T00:00:00+00:00');
+      expect(dateRange[5].format()).toBe('2018-01-13T00:00:00+00:00');
+      expect(dateRange[6].format()).toBe('2018-01-14T00:00:00+00:00');
     });
   });
 });
